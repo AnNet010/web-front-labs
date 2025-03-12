@@ -2,5 +2,43 @@ body {
     background-color: lightblue;
     color: maroon;
     font-family: Arial;
+    font-size: 18px;
     margin: 0px;
+}
+
+
+header {
+    background-color: darkblue;
+    color: white;
+    font-family: center;
+    margin: 0px;
+    padding: 10px;
+    font-family: Arial;
+    font-size: 16pt;
+}
+
+main {
+    background-color: white;
+    color: black;
+    font-family: center;
+    padding: 20px;
+    margin: 20px;
+    font-size: 18px;
+    font-family: Arial;
+    border-radius: 10px
+}
+
+footer {
+    background-color: darkblue;
+    color: white;
+    font-family: center;
+    padding: 10px;
+    width: 100%;   
+    font-size: 16px;
+    font-family: Arial;
+}
+
+a {
+    text-decoration: none;
+    color: darkblue;
 }
