@@ -41,6 +41,7 @@ footer {
 a {
     text-decoration: none;
     color: darkblue;
+    transition: 1s 0.4s;
 }
 
 a:link {
@@ -58,6 +59,7 @@ a:hover {
     padding: 2px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(125, 174, 202, 0.877);
+    transition: 0.3s;
 }
 
 a:active {
