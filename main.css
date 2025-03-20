@@ -42,3 +42,25 @@ a {
     text-decoration: none;
     color: darkblue;
 }
+
+a:link {
+    color: darkblue;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
+    background-color: rgb(104, 194, 230);
+    padding: 2px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(125, 174, 202, 0.877);
+}
+
+a:active {
+    color: black;
+    opacity: 0.3;
+}
