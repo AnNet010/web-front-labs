@@ -38,6 +38,17 @@ footer {
     font-family: Arial;
 }
 
+
+h1 {
+    text-align: center;
+    color: darkblue;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 30px 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 a {
     text-decoration: none;
     color: darkblue;
@@ -55,7 +66,7 @@ a:visited {
 a:hover {
     color: white;
     text-decoration: underline;
-    background-color: rgb(104, 194, 230);
+    background-color: rgb(188, 232, 250);
     padding: 2px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(125, 174, 202, 0.877);
@@ -66,3 +77,22 @@ a:active {
     color: black;
     opacity: 0.3;
 }
+
+div.menu {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    margin: 30px 0 30px 0;
+    border-radius: 12px;
+    box-shadow: 1px 4px 10px rgba(23, 40, 115, 0.298);
+    transition: 0.4s;
+
+
+}
+
+div.menu:hover {
+    background-color: rgb(242, 249, 251);
+    box-shadow: 0 0 15px #00000030;
+}
+
+
+
