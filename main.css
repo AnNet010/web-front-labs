@@ -8,7 +8,7 @@ body {
 
 
 header {
-    background-color: darkblue;
+    background-color: Navy;
     color: white;
     font-family: center;
     margin: 0px;
@@ -19,7 +19,7 @@ header {
 
 main {
     background-color: white;
-    color: black;
+    color: rgb(19, 38, 138);
     font-family: center;
     padding: 20px;
     margin: 10px 20px 38.182px;
@@ -29,7 +29,7 @@ main {
 }
 
 footer {
-    background-color: darkblue;
+    background-color: Navy;
     color: white;
     font-family: center;
     padding: 10px;
