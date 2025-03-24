@@ -17,58 +17,55 @@
                 padding: 20px;
                 text-align: left;
                 cursor: pointer;
-                transition: 0.5s;
+                transition: 2s;
                 overflow: hidden;
-                position: relative;
-                width: 80%;
                 border: 2px solid #b8f2fa;
             }
 
             .book h1 {
                 margin: 0;
                 font-size: 22px;
-                color: rgb(4, 137, 186);
-                transition: 0.3s;
+                color: rgb(31, 100, 198);
+                transition: 3s;
                 cursor: pointer;
                 text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             }
 
             .book div {
-                display: none;
+                display: block;
                 font-size: 18px;
                 color: #000000;
                 opacity: 0;
                 max-height: 0;
-                transition: opacity 0.5s ease-in-out 2s, max-height 0.5s ease-in-out 2s;
                 text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
                 text-indent: 1.25cm;
                 line-height: 1.5;
-                margin: 1px;            
+                margin: 1px;
+                overflow: hidden;
+                transition: 2s;
             }
             
             .book:hover {
                 box-shadow: 8px 8px 30px rgba(0, 0, 0, 0.5);
                 width: 85%;
                 border-radius: 25px;
-                background: rgb(229, 252, 255);
-                border: 2px double #69e4f1;
+                background: rgb(231, 252, 255);
+                border: 2px double #399ea9;
                 margin-left: 5%;
                 margin-right: 5%;
                 min-height: 500px;
             }
 
             .book:hover div {
-                display: block;
                 opacity: 1;
                 padding: 15px;
                 max-height: 1500px;
-                transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
                 text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
             }
 
             .book:hover h1 {
-                color: DeepSkyBlue;
-                text-shadow: 3px 3px 8px rgba(0, 172, 172, 0.483);
+                color: rgba(0, 185, 206, 0.812);
+                text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.421);
             }
 
         </style>
