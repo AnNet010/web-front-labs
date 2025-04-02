@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Боброва Анна Антоновна. Позиционирование</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        main {
+            background-color: rgba(226, 245, 255, 0);
+            margin-bottom: 100px;
+        }
+        div {
+            width: 300px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            background-color: white;
+            border: 1px dotted darkgreen;
+            margin: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .position-relative {
+            position: relative;
+            left: 150px;
+            bottom: 130px;
+            z-index: 0;
+        }
+        .position-absolute {
+            position: absolute;
+            left: 300px;
+        }
+        .position-relative:hover {
+            z-index: 2;
+
+        }
+        .position-absolute:hover {
+            z-index: 2;
+            transform: scale(1.08);
+            background-color: #f0f8ff;
+            box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.404);
+        }
+
+
+    </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 3
+        </header>
+
+        <main>
+            <div>static</div>
+            <div>static</div>
+            <div class="position-relative">relative</div>
+            <div class="position-absolute">absolute</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+        </main>
+
+
+        <footer>
+            &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
