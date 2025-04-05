@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Комикс</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .comic-1 {
+            position: relative;
+            width: 1000px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .comic-image-1 {
+            width: 1000px;
+            height: 500px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .cloud-1 {
+            position: absolute;
+            border: 1px double rgb(166, 219, 255);
+            border-radius: 50%;
+            width: 200px;
+            height: 60px;
+            opacity: 0;
+            transition: 0.2s;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .text-cloud-1 {
+            position: absolute;
+            border: 1px double rgb(166, 219, 255);
+            border-radius: 15px;
+            padding: 8px 12px;
+            font-size: 22px;
+            border-radius: 50%;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.2s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            width: 130px;
+            height: 60px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            top: 87px;
+            left: 30px;
+            transition-delay: 0.6s;
+            background: linear-gradient(to top left, rgb(186, 219, 251), rgb(146, 206, 255));
+            color: Navy;
+            line-height: 1;
+        }
+        .cloud1-1 {
+            width: 50px;
+            height: 35px;
+            top: 225px;
+            left: 265px;
+            transition-delay: 0.3s;
+            background: linear-gradient(to top left, #f7fbff, AliceBlue);
+        }
+        .cloud2-1 {
+            width: 70px;
+            height: 45px;
+            top: 185px;
+            left: 205px;
+            transition-delay: 0.4s;
+            background: linear-gradient(to top left,  AliceBlue,  rgb(210, 234, 255));
+        }
+        .cloud3-1 {
+            width: 100px;
+            height: 55px;
+            top: 140px;
+            left: 127px;
+            transition-delay: 0.5s;
+            background: linear-gradient(to top left,  rgb(210, 234, 255), rgb(186, 219, 251));
+        }
+        .comic-1:hover .cloud-1,
+        .comic-1:hover .text-cloud-1 {
+            opacity: 1;
+        }
+
+
+
+        .comics-line {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .comic-2 {
+            position: relative;
+            width: 45%;
+        }
+        .comic-image-2 {
+            width: 700px;
+            height: 500px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .cloud-2 {
+            position: absolute;
+            border: 1px dotted rgb(255, 224, 162);
+            border-radius: 50%;
+            width: 200px;
+            height: 60px;
+            opacity: 0;
+            transition: 0.2s;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .text-cloud-2 {
+            position: absolute;
+            border: 1px double rgb(255, 224, 162);
+            border-radius: 15px;
+            padding: 8px 12px;
+            font-size: 27px;
+            border-radius: 50%;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.2s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            width: 150px;
+            height: 100px;
+            top: 40px;
+            left: 15px;
+            transition-delay: 0.6s;
+            background: linear-gradient(to top left, BlanchedAlmond, Wheat);
+            color: #644a2f;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 1;
+        }
+        .cloud1-2 {
+            width: 50px;
+            height: 40px;
+            top: 160px;
+            left: 237px;
+            transition-delay: 0.3s;
+            background: linear-gradient(to top left, FloralWhite, OldLace);
+        }
+        .cloud2-2 {
+            width: 65px;
+            height: 50px;
+            top: 135px;
+            left: 190px;
+            transition-delay: 0.4s;
+            background: linear-gradient(to top left,  OldLace, AntiqueWhite);
+        }
+        .cloud3-2 {
+            width: 100px;
+            height: 75px;
+            top: 100px;
+            left: 120px;
+            transition-delay: 0.5s;
+            background: linear-gradient(to top left, AntiqueWhite, BlanchedAlmond);
+        }
+
+
+
+        .comic-3 {
+            position: relative;
+            width: 45%;
+        }
+        .comic-image-3 {
+            width: 700px;
+            height: 500px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .cloud-3 {
+            position: absolute;
+            border: 1px double rgb(255, 224, 162);
+            border-radius: 50%;
+            width: 200px;
+            height: 60px;
+            opacity: 0;
+            transition: 0.2s;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .text-cloud-3 {
+            position: absolute;
+            border: 1px double rgb(255, 224, 162);
+            border-radius: 15px;
+            padding: 8px 12px;
+            font-size: 16px;
+            border-radius: 50%;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.2s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            width: 120px;
+            height: 90px;
+            top: 140px;
+            left: 30px;
+            transition-delay: 0.6s;
+            background: linear-gradient(to top left, BlanchedAlmond, Wheat);
+            color: rgb(0, 0, 0);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 50px;
+            font-size: 27px;
+            text-align: center;
+            line-height: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cloud1-3 {
+            width: 50px;
+            height: 40px;
+            top: 260px;
+            left: 230px;
+            transition-delay: 0.3s;
+            background: linear-gradient(to top left, FloralWhite, OldLace);
+        }
+        .cloud2-3 {
+            width: 65px;
+            height: 50px;
+            top: 235px;
+            left: 185px;
+            transition-delay: 0.4s;
+            background: linear-gradient(to top left,  OldLace, AntiqueWhite);
+        }
+        .cloud3-3 {
+            width: 100px;
+            height: 75px;
+            top: 195px;
+            left: 115px;
+            transition-delay: 0.5s;
+            background: linear-gradient(to top left, AntiqueWhite, BlanchedAlmond);
+        }
+
+        .comic-2:hover .cloud-2,
+        .comic-2:hover .text-cloud-2,
+        .comic-3:hover .cloud-3,
+        .comic-3:hover .text-cloud-3 {
+            opacity: 1;
+        }
+
+
+
+        .comics-line {
+            display: flex;
+            justify-content: space-around;
+        }
+
+
+        .comic-4 {
+            position: relative;
+            width: 1000px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .comic-image-4 {
+            width: 1000px;
+            height: 500px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .cloud-4 {
+            position: absolute;
+            border: 1px double rgb(243, 161, 134);
+            border-radius: 50%;
+            width: 200px;
+            height: 60px;
+            opacity: 0;
+            transition: 0.2s;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .text-cloud-4 {
+            position: absolute;
+            border: 1px double rgb(243, 161, 134);
+            border-radius: 15px;
+            padding: 8px 12px;
+            font-size: 16px;
+            border-radius: 50%;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.2s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            width: 150px;
+            height: 105px;
+            top: 140px;
+            left: 280px;
+            transition-delay: 0.6s;
+            background: linear-gradient(to top left, rgb(255, 200, 184), rgb(240, 174, 152));
+            color: rgb(0, 0, 0);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 50px;
+            font-size: 20px;
+            text-align: center;
+            line-height: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cloud1-4 {
+            width: 50px;
+            height: 40px;
+            top: 275px;
+            left: 500px;
+            transition-delay: 0.3s;
+            background: linear-gradient(to top left,  rgb(255, 230, 223), rgb(255, 228, 219));
+        }
+        .cloud2-4 {
+            width: 65px;
+            height: 50px;
+            top: 250px;
+            left: 450px;
+            transition-delay: 0.4s;
+            background: linear-gradient(to top left,  rgb(255, 228, 219),  rgb(255, 213, 200));
+        }
+        .cloud3-4 {
+            width: 100px;
+            height: 75px;
+            top: 210px;
+            left: 380px;
+            transition-delay: 0.5s;
+            background: linear-gradient(to top left,  rgb(255, 213, 200), rgb(255, 200, 184));
+        }
+        .comic-4:hover .cloud-4,
+        .comic-4:hover .text-cloud-4 {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4
+    </header>
+
+    <div class="comic-1">
+        <img src="hero1.jpg" class="comic-image-1"> 
+        <div class="cloud-1 cloud1-1"></div>
+        <div class="cloud-1 cloud2-1"></div>
+        <div class="cloud-1 cloud3-1"></div>
+        <div class="text-cloud-1">Зима близко...</div>
+    </div>
+
+    <div class="comics-line">
+        <div class="comic-2">
+            <img src="hero2.jpg" class="comic-image-2"> 
+            <div class="cloud-2 cloud1-2"></div>
+            <div class="cloud-2 cloud2-2"></div>
+            <div class="cloud-2 cloud3-2"></div>
+            <div class="text-cloud-2">После стольких лет?</div>
+        </div>
+
+        <div class="comic-3">
+            <img src="hero3.jpg" class="comic-image-3"> 
+            <div class="cloud-3 cloud1-3"></div>
+            <div class="cloud-3 cloud2-3"></div>
+            <div class="cloud-3 cloud3-3"></div>
+            <div class="text-cloud-3">Всегда</div>
+        </div>
+    </div>
+
+    <div class="comic-4">
+        <img src="hero4.jpg" class="comic-image-4"> 
+        <div class="cloud-4 cloud1-4"></div>
+        <div class="cloud-4 cloud2-4"></div>
+        <div class="cloud-4 cloud3-4"></div>
+        <div class="text-cloud-4">Первое правило бойцовского клуба...</div>
+    </div>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
