@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Панель прогресса</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .panel {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0;
+            background: #4CAF50;
+            border-radius: 10px;
+            transition: width 0.1s;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+        }
+        
+        button:hover {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        button:active {
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 4
+    </header>
+
+    <div class="panel">
+        <h2>Степень прогресса</h2>
+        <div class="progress-bar">
+            <div class="progress" id="myProgress"></div>
+        </div>
+        <button id="myButton">Нажмите и удерживайте</button>
+    </div>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+
+    <script>
+        const btn = document.getElementById('myButton');//доступ к кнопке по ее id, сохранение в переменную btn
+        const progress = document.getElementById('myProgress');//доступ к блоку прогресса
+        let timer;//переменная, в которую будет записан setInterval, чтобы потом его остановить
+
+        btn.onmousedown = function() {  //эта часть запускается, когда кнопка нажата и удерживается мышью
+            let width = 0;//начальное значение ширины прогресса 0%
+            timer = setInterval(function() { //циклическая функция, которая будет выполняться каждые 50 миллисекунд
+                if(width >= 100) { //если ширина достигла 100%, останавливаем таймер
+                    clearInterval(timer);
+                } else { //иначе увеличивается width на 1 и меняется ширина зеленой полосы на новое значение (1%, 2% и т.д.)
+                    width++;
+                    progress.style.width = width + '%';
+                }
+            }, 50);//все это выполняется раз в 50 миллисекунд (100 шагов * 50 мс = 5000мс = 5 секунд)
+        };
+
+        btn.onmouseup = btn.onmouseleave = function() { //таймер останавливается, если кнопка mouseup отпущена и уведен курсор с кнопки mouseleave
+            clearInterval(timer);
+        };
+    </script>
+</body>
+</html>
