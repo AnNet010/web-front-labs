@@ -30,7 +30,7 @@
             color: #333;
         }
 
-        .progress-bar {
+        .line {
             height: 20px;
             background: #e0e0e0;
             border-radius: 10px;
@@ -64,11 +64,11 @@
             box-shadow: none;
         }
 
-        button:active + .progress-bar .progress {
-            animation: fillProgress 5s linear forwards;
+        button:active + .line .progress {
+            animation: ProgressLine 5s linear;
         }
 
-        @keyframes fillProgress {
+        @keyframes ProgressLine {
             from { width: 0%; }
             to { width: 100%; }
         }
@@ -83,7 +83,7 @@
         <div class="panel">
             <h2>Степень прогресса</h2>
             <button>Нажмите и удерживайте</button>
-            <div class="progress-bar">
+            <div class="line">
                 <div class="progress"></div>
             </div>
         </div>
