@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script>
+        function showSum() {
+            let a = 5154;
+            let b = 7891;
+            let result = a + b;
+            alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
+        }
+    </script>
+    <style>
+        .message {
+            cursor: pointer;
+            width: 300px;
+            height: 100px;
+            background-color: #f0f8ff;
+            border: 2px solid #4682b4;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            line-height: 70px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            vertical-align: top;
+        }
+        .messages-container {
+            text-align: center;
+            margin: 20px auto;
+            white-space: nowrap;
+        }
+        header, footer {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    НГТУ, ФБ, Лабораторная работа 5
+</header>
+
+<main>
+        <div class="message" onclick="showSum()">Сколько будет 5154+7891?</div>
+        <div class="message">Узнать, кто автор страницы</div>
+    </div>
+</main>
+
+<footer>
+    &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+</footer>
+</body>
+</html>
