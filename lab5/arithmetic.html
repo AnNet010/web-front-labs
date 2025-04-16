@@ -15,6 +15,13 @@
             let result = a + b;
             alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
         }
+        function showAuthor() {
+            let author = 'Автор страницы: \nБоброва Анна Антоновна';
+            alert(author);
+        }
+        function showGreeting() {
+            alert('Приветствую вас на моей странице!\n\nКто хочет, тот ищет возможности, кто не хочет - ищет причины.');
+    }
     </script>
     <style>
         .message {
@@ -39,23 +46,22 @@
             white-space: nowrap;
         }
         header, footer {
-            text-align: center;
-            padding: 10px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<header>
-    НГТУ, ФБ, Лабораторная работа 5
-</header>
+    <header onclick="showAuthor()">
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
 
 <main>
         <div class="message" onclick="showSum()">Сколько будет 5154+7891?</div>
-        <div class="message">Узнать, кто автор страницы</div>
+        <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
     </div>
 </main>
 
-<footer>
+<footer ondblclick="showGreeting()">
     &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
 </footer>
 </body>
