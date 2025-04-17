@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Корзина</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .cart {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .product-name {
+            font-weight: bold;
+        }
+        .product-price {
+            color: #666;
+        }
+        input[type="number"] {
+            width: 180px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #calculate {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #clear {
+            background-color: #f44336;
+            color: white;
+        }
+        #total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="showAuthor()">
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <div class="cart">
+            <h1>Корзина товаров</h1>
+            
+            <div class="product">
+                <div>
+                    <span class="product-name">Яблоки</span>
+                    <span class="product-price">(100р/шт)</span>
+                </div>
+                <input type="number" id="apples" min="0" placeholder="сколько яблок?">
+            </div>
+            
+            <div class="product">
+                <div>
+                    <span class="product-name">Груши</span>
+                    <span class="product-price">(80р/шт)</span>
+                </div>
+                <input type="number" id="pears" min="0" placeholder="введите количество груш">
+            </div>
+            
+            <div class="product">
+                <div>
+                    <span class="product-name">Апельсины</span>
+                    <span class="product-price">(150р/шт)</span>
+                </div>
+                <input type="number" id="oranges" min="0" placeholder="сколько апельсинов?">
+            </div>
+            
+            <div class="product">
+                <div>
+                    <span class="product-name">Дыни</span>
+                    <span class="product-price">(300р/шт)</span>
+                </div>
+                <input type="number" id="melons" min="0" placeholder="количество дынь">
+            </div>
+            
+            <div class="product">
+                <div>
+                    <span class="product-name">Бананы</span>
+                    <span class="product-price">(70р/шт)</span>
+                </div>
+                <input type="number" id="bananas" min="0" placeholder="сколько бананов?">
+            </div>
+            
+            <div class="buttons">
+                <button id="calculate" onclick="calculateTotal()">Рассчитать</button>
+                <button id="clear" onclick="clearCart()">Очистить</button>
+            </div>
+            
+            <div id="total"></div>
+        </div>
+    </main>
+
+    <footer ondblclick="showGreeting()">
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+
+    <script>
+        function calculateTotal() {
+            const apples = parseInt(document.getElementById('apples').value) || 0;
+            const pears = parseInt(document.getElementById('pears').value) || 0;
+            const oranges = parseInt(document.getElementById('oranges').value) || 0;
+            const melons = parseInt(document.getElementById('melons').value) || 0;
+            const bananas = parseInt(document.getElementById('bananas').value) || 0;
+            
+            const total = (apples * 100) + (pears * 80) + (oranges * 150) + (melons * 300) + (bananas * 70);
+            
+            document.getElementById('total').textContent = `Общая цена: ${total} р`;
+        }
+        
+        function clearCart() {
+            document.getElementById('apples').value = '';
+            document.getElementById('pears').value = '';
+            document.getElementById('oranges').value = '';
+            document.getElementById('melons').value = '';
+            document.getElementById('bananas').value = '';
+            document.getElementById('total').textContent = '';
+        }
+    </script>
+</body>
+</html>
