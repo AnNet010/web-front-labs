@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Круги</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+         main {
+            background-color: rgba(226, 245, 255, 0);
+            padding-top: 80px;
+            height: calc(100vh - 160px);
+            position: relative;
+            overflow: hidden;
+        }
+        body {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            transition: all 0.7s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="showAuthor()">
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <div id="circles-container"></div>
+        <div class="controls">
+            <button onclick="showCircles()">Восстановить круги</button>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            createCircles();
+        });
+
+        function createCircles() {
+            const container = document.getElementById('circles-container');
+            container.innerHTML = '';
+            const colors = [
+                'Crimson', 'LawnGreen', '#3357FF', 'rgb(255, 191, 0)', 
+                'LightPink', '#33FFF3', 'DarkOrange', '#8C33FF', 
+                'LimeGreen', 'HotPink'
+            ];
+            
+            const viewportWidth = window.innerWidth - 100;
+            const viewportHeight = window.innerHeight - 250;
+            
+            for (let i = 1; i <= 10; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'circle';
+                circle.textContent = i;
+                circle.style.backgroundColor = colors[i-1];
+                
+                const x = Math.floor(Math.random() * 500);
+                const y = Math.floor(Math.random() * 300);
+
+                circle.style.left = x + "px";
+                circle.style.top = y + "px";
+                
+                circle.addEventListener('click', function() {
+                    hideCircle(this);
+                });
+                
+                container.appendChild(circle);
+            }
+        }
+
+        function hideCircle(circle) {
+            circle.style.width = '0';
+            circle.style.height = '0';
+            circle.style.opacity = '0';
+            circle.style.fontSize = '0';
+        }
+
+        function showCircles() {
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach(circle => {
+                circle.style.width = '80px';
+                circle.style.height = '80px';
+                circle.style.opacity = '1';
+                circle.style.fontSize = '24px';
+            });
+        }
+    </script>
+</body>
+</html>
