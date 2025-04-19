@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Событие</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32Ф.png">
+</head>
+<style>
+    #block {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            background-color: Turquoise;
+            cursor: crosshair;
+            margin: 30px auto;
+            line-height: 1.5;
+            font-weight: bold;
+            
+          
+        }
+</style>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+    <script>
+        function showCoords() {
+            let x = this.event.x;
+            let y = this.event.y;
+            let div = document.getElementById('block');
+
+            if(this.event.ctrlKey)
+                div.style.color = 'red';
+            else
+                div.style.color = 'black';
+
+            div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px';
+
+            if(this.event.ctrlKey)
+                div.innerHTML += '<br>Нажата клавиша Ctrl';
+
+            if(this.event.altKey)
+            div.innerHTML += '<br>Нажата клавиша Alt';
+        if(this.event.altKey) {
+            div.style.border = '5px dashed DarkOrchid';
+            div.style.borderRadius = '20px';
+            div.style.fontStyle = 'italic';
+        } else {
+            div.style.border = '2px solid black';
+            div.style.borderRadius = '0px';
+            div.style.fontStyle = 'normal';
+        }
+
+        if(this.event.shiftKey)
+            div.innerHTML += '<br>Нажата клавиша Shift';
+        if(this.event.shiftKey) {
+            div.style.backgroundColor = 'LightYellow';
+            div.style.boxShadow = '3px 3px 50px orange';
+        } else {
+            div.style.backgroundColor = 'Turquoise';
+            div.style.boxShadow = 'none';
+        }
+        }
+    </script>
+
+    <main>
+        <div id="block" onmousemove="showCoords()"></div>
+    </main>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
