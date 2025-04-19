@@ -45,6 +45,11 @@
             document.getElementById('grayscaleOutput').innerText = value;
             document.getElementById('filterImage').style.filter = 'grayscale(' + value + ')';
         }
+        function hueRotateChange() {
+            let value = document.getElementById('hueRotateValue').value + 'deg';
+            document.getElementById('hueRotateOutput').innerText = value;
+            document.getElementById('filterImage').style.filter = 'hue-rotate(' + value + ')';
+        }
     </script>
 </head>
 <body>
@@ -72,6 +77,11 @@
             Фильтр grayscale:
             <input type="range" min="0" max="100" value="0" onchange="grayscaleChange()" id="grayscaleValue">
             <span id="grayscaleOutput"></span>
+        </div>
+        <div>
+            Фильтр hue-rotate:
+            <input type="range" min="0" max="360" value="0" onchange="hueRotateChange()" id="hueRotateValue">
+            <span id="hueRotateOutput"></span>
         </div>
         <div><img src="mountain.jpg" id="filterImage"></div>
     </main>
