@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Эффекты</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .image-block {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+            max-width: 85%;
+        }
+
+        #filterImage {
+            max-width: 90%;
+            display: block;
+        }
+
+        .filter-info {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: AliceBlue;
+            border: 2px solid #4682b4;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .instructions {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: AliceBlue;
+            border-radius: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <div class="instructions">
+            <h3>Инструкция:</h3>
+            <ul>
+                <li>Наведите курсор на изображение - применится фильтр blur (чем правее курсор, тем сильнее эффект)</li>
+                <li>Зажмите <b>Ctrl</b> и наведите на изображение - применится фильтр grayscale</li>
+                <li>Зажмите <b>Alt</b> и наведите на изображение - применится фильтр hue-rotate</li>
+                <li>Зажмите <b>Shift</b> и наведите на изображение - применится фильтр brightness</li>
+            </ul>
+        </div>
+
+        <div class="image-block">
+            <img src="road.png" id="filterImage">
+            <div class="filter-info">
+                Фильтр: <span id="filterName">none</span> (<span id="filterValue">0</span>)
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+
+    <script>
+        let image = document.getElementById("filterImage");
+        let filterName = document.getElementById("filterName");
+        let filterValue = document.getElementById("filterValue");
+
+        image.onmousemove = function(event) {
+            let x = event.offsetX;
+            let width = image.clientWidth;
+            let percent = x / width;
+
+            let name = "";
+            let value = "";
+            let filter = "";
+
+            if (event.ctrlKey) {
+                value = Math.round(percent * 100);
+                filter = "grayscale(" + value + "%)";
+                name = "grayscale";
+            } else if (event.altKey) {
+                value = Math.round(percent * 360);
+                filter = "hue-rotate(" + value + "deg)";
+                name = "hue-rotate";
+            } else if (event.shiftKey) {
+                value = Math.round(100 + percent * 200);
+                filter = "brightness(" + value + "%)";
+                name = "brightness";
+            } else {
+                value = (percent * 20).toFixed(1);
+                filter = "blur(" + value + "px)";
+                name = "blur";
+            }
+
+            image.style.filter = filter;
+            filterName.innerHTML = name;
+            filterValue.innerHTML = value;
+        };
+
+        image.onmouseleave = function() {
+            image.style.filter = "none";
+            filterName.innerHTML = "none";
+            filterValue.innerHTML = "0";
+        };
+    </script>
+</body>
+</html>
