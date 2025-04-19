@@ -50,6 +50,12 @@
             document.getElementById('hueRotateOutput').innerText = value;
             document.getElementById('filterImage').style.filter = 'hue-rotate(' + value + ')';
         }
+        function invertChange() {
+            let value = document.getElementById('invertValue').value + '%';
+            document.getElementById('invertOutput').innerText = value;
+            document.getElementById('filterImage').style.filter = 'invert(' + value + ')';
+        }
+
     </script>
 </head>
 <body>
@@ -83,6 +89,11 @@
             <input type="range" min="0" max="360" value="0" onchange="hueRotateChange()" id="hueRotateValue">
             <span id="hueRotateOutput"></span>
         </div>
+        <div>
+            Фильтр invert:
+            <input type="range" min="0" max="100" value="0" onchange="invertChange()" id="invertValue">
+            <span id="invertOutput"></span>
+        </div>        
         <div><img src="mountain.jpg" id="filterImage"></div>
     </main>
 
