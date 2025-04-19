@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Круги</title>
+    <title>Боброва Анна Антоновна. Фильтры</title>
     <link rel="stylesheet" href="../main.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon-16x16.png">
-    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-32x32Ф.png">
     <style>
     main {
         padding: 20px;
         text-align: center;
     }
 
-    #blurImage {
+    img {
         max-width: 90%;
         margin-top: 20px;
     }
 
-    #blurOutput {
+    span {
         font-weight: bold;
         margin-left: 10px;
     }
@@ -28,7 +28,12 @@
         function blurChange() {
             let value = document.getElementById('blurValue').value + 'px';
             document.getElementById('blurOutput').innerText = value;
-            document.getElementById('blurImage').style.filter = 'blur(' + value + ')';
+            document.getElementById('filterImage').style.filter = 'blur(' + value + ')';
+        }
+        function brightnessChange() {
+            let value = document.getElementById('brightnessValue').value + '%';
+            document.getElementById('brightnessOutput').innerText = value;
+            document.getElementById('filterImage').style.filter = 'brightness(' + value + ')';
         }
     </script>
 </head>
@@ -43,7 +48,12 @@
             <input type="range" min="0" max="20" value="0" onchange="blurChange()" id="blurValue">
             <span id="blurOutput"></span>
         </div>
-        <div><img src="mountain.jpg" id="blurImage"></div>
+        <div>
+            Фильтр brightness:
+            <input type="range" min="0" max="500" value="100" onchange="brightnessChange()" id="brightnessValue">
+            <span id="brightnessOutput"></span>
+        </div>
+        <div><img src="mountain.jpg" id="filterImage"></div>
     </main>
 
     <footer>
