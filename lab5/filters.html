@@ -60,8 +60,11 @@
             document.getElementById('saturateOutput').innerText = value;
             document.getElementById('filterImage').style.filter = 'saturate(' + value + ')';
         }
-
-
+        function sepiaChange() {
+            let value = document.getElementById('sepiaValue').value + '%';
+            document.getElementById('sepiaOutput').innerText = value;
+            document.getElementById('filterImage').style.filter = 'sepia(' + value + ')';
+        }
     </script>
 </head>
 <body>
@@ -104,7 +107,12 @@
             Фильтр saturate:
             <input type="range" min="0" max="500" value="100" onchange="saturateChange()" id="saturateValue">
             <span id="saturateOutput"></span>
-        </div>                
+        </div>
+        <div>
+            Фильтр sepia:
+            <input type="range" min="0" max="100" value="0" onchange="sepiaChange()" id="sepiaValue">
+            <span id="sepiaOutput"></span>
+        </div>               
         <div><img src="mountain.jpg" id="filterImage"></div>
     </main>
 
