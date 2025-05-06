@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Объекты</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .book {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bestseller {
+            border-left: 5px solid gold;
+            background-color: #fffbe6;
+        }
+
+        .out-of-stock {
+            opacity: 0.5;
+            font-style: italic;
+        }
+
+        .price {
+            color: darkgreen;
+            font-weight: bold;
+        }
+
+        .sign {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+    <script src="books.js"></script>
+    <script>
+        function showBooks() {
+            const bookList = document.getElementById('bookList');
+            for(let i = 0; i < books.length; i++) {
+                let book = books[i];
+
+                let classList = 'book';
+                if (book.bestseller) classList += ' bestseller';
+                if (!book.inStock) classList += ' out-of-stock';
+
+                bookList.innerHTML += `
+                <div class="${classList}">
+                <b>${ book.author }.</b>
+                <i>${ book.name }</i>
+                ${ book.bestseller ? '<sup style="color: red; background-color: yellow; font-style: italic; padding: 2px 4px; border-radius: 4px;">Бестселлер</sup>' : '' }
+                &mdash; ${ book.publicationYear }<br>
+                <span class="price">Цена: ${ book.price } ₽</span><br>
+                ${ book.inStock ? '' : '<span class="sign">Нет в наличии</span>' }
+            </div>
+            `
+            }
+        }
+    </script>
+</head>
+<body onload="showBooks()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <h1>Список книг</h1>
+        <div id="bookList">
+        </div>
+    </main>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
