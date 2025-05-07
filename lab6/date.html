@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Даты</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .date-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .date-item {
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-left: 4px solid #3498db;
+            background-color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        .date-item:hover {
+            background-color: #e8f4fc;
+            transform: translateX(5px);
+        }
+
+        .locale-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .locale-code {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .locale-date {
+            color: #2980b9;
+            font-weight: 500;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        #current-date {
+            padding: 15px;
+            background-color: #e8f4fc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function showDate() {
+            let out = document.getElementById('current-date');
+            let today = new Date();
+            out.innerHTML = today.toLocaleString('ru-RU');
+
+            let locales = [
+                { name: 'Россия', code: 'ru-RU' },
+                { name: 'США', code: 'en-US' },
+                { name: 'Италия', code: 'it-IT' },
+                { name: 'Германия', code: 'de-DE' },
+                { name: 'Франция', code: 'fr-FR' },
+                { name: 'Япония', code: 'ja-JP' },
+                { name: 'Египет', code: 'ar-EG' },
+                { name: 'Беларусь', code: 'be-BY' },
+                { name: 'Болгария', code: 'bg-BG' },
+                { name: 'Испания', code: 'ca-ES' },
+                { name: 'Чехия', code: 'cs-CZ' },
+                { name: 'Дания', code: 'da-DK' },
+                { name: 'Австрия', code: 'de-AT' },
+                { name: 'Швейцария', code: 'de-CH' },
+                { name: 'Мальдивы', code: 'dv-MV' },
+                { name: 'Греция', code: 'el-GR' },
+                { name: 'Китай', code: 'zh-CN' },
+                { name: 'Сингапур', code: 'zh-SG' },
+                { name: 'Тайвань', code: 'zh-TW' },
+                { name: 'Вьетнам', code: 'vi-VN' },
+                { name: 'Австралия', code: 'en-AU' },
+                { name: 'Канада', code: 'en-CA' },
+                { name: 'Великобритания', code: 'en-GB' },
+                { name: 'Новая Зеландия', code: 'en-NZ' },
+                { name: 'Филиппины', code: 'en-PH' },
+                { name: 'Аргентина', code: 'es-AR' },
+                { name: 'Мексика', code: 'es-MX' },
+                { name: 'Казахстан', code: 'kk-KZ' }
+            ];
+            let container = document.getElementById('locale-dates');
+
+            locales.forEach(locale => {
+                container.innerHTML += `
+                    <div class="date-item">
+                        <span class="locale-name">${locale.name}</span>
+                        <span class="locale-code">(${locale.code})</span>:
+                        <span class="locale-date">${today.toLocaleString(locale.code)}</span>
+                    </div>
+                `;
+            });
+        
+        }
+    </script>
+</head>
+<body onload="showDate()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <div id="current-date"></div>
+
+        <div class="date-container" id="locale-dates">
+            <h2>Дата и время в разных локалях:</h2>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
