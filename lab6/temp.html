@@ -1,0 +1,260 @@
+<!DOCTYPE html> 
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Температура</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        body {
+        padding-bottom: 70px;
+        }
+
+        h1 {
+        text-align: center;
+        }
+
+        .chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 4px;
+        height: 500px;
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 20px 10px 0;
+        margin-bottom: 10px;
+        overflow-x: hidden;
+        overflow-y: visible;
+        }
+
+        .bar {
+        flex: 1;
+        min-width: 20px;
+        max-width: 100px;
+        position: relative;
+        cursor: pointer;
+        }
+
+        .min, .max {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        box-sizing: border-box;
+        }
+
+        .min {
+        background-color: #3498db;
+        bottom: 0;
+        border-radius: 0 0 4px 4px;
+        }
+
+        .max {
+        background-color: #e74c3c;
+        border-radius: 4px 4px 0 0;
+        }
+
+        .bar.selected .min {
+        background-color: #00e6f2;
+        }
+
+        .bar.selected .max {
+        background-color: #f57b00;
+        }
+
+        .labels {
+        display: flex;
+        justify-content: space-between;
+        gap: 4px;
+        font-size: 12px;
+        margin-bottom: 20px;
+        }
+
+        .labels div {
+        flex: 1;
+        min-width: 20px;
+        max-width: 100px;
+        text-align: center;
+        }
+
+        .controls {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+
+        input, select {
+        padding: 5px;
+        width: 100px;
+        margin: 5px;
+        }
+
+        button {
+        padding: 10px 20px;
+        cursor: pointer;
+        background: linear-gradient(135deg, #e74c3c 0%, #3498db 100%);
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+        background: linear-gradient(135deg, #00e6f2 0%, #f57b00 100%);
+        transform: translateY(-2px);
+        }
+
+        button:active {
+        transform: translateY(2px);
+        }
+
+        #day-info, #min-temp, #max-temp {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    НГТУ, ФБ, Лабораторная работа 6
+</header>
+
+<h1>Температуры по дням месяца</h1>
+
+<div class="controls">
+  <label for="month-select">Выберите месяц:</label>
+  <select id="month-select" onchange="generateChart()">
+    <option>Январь</option>
+    <option>Февраль</option>
+    <option>Март</option>
+    <option>Апрель</option>
+    <option>Май</option>
+    <option>Июнь</option>
+    <option>Июль</option>
+    <option>Август</option>
+    <option>Сентябрь</option>
+    <option>Октябрь</option>
+    <option>Ноябрь</option>
+    <option>Декабрь</option>
+  </select>
+</div>
+
+<div class="chart" id="chart"></div>
+<div class="labels" id="labels"></div>
+
+<div class="controls">
+  <label for="day-input">Введите номер дня (1–30):</label>
+  <input type="number" id="day-input" min="1" max="30">
+  <button onclick="showDay()">Показать</button>
+</div>
+
+<div id="day-info">Выберите день для просмотра температур</div>
+<div id="min-temp">Минимальная температура: —</div>
+<div id="max-temp">Максимальная температура: —</div>
+
+<script>
+  const chart = document.getElementById('chart');
+  const labels = document.getElementById('labels');
+  const dayInfo = document.getElementById('day-info');
+  const minTemp = document.getElementById('min-temp');
+  const maxTemp = document.getElementById('max-temp');
+  const monthSelect = document.getElementById('month-select');
+  let temperatures = [];
+
+  function generateTemperatures() {
+    const temps = [];
+    for (let i = 0; i < 30; i++) {
+      const min = Math.floor(Math.random() * 10) + 5;
+      const max = min + Math.floor(Math.random() * 6) + 3;
+      temps.push({ min, max });
+    }
+    return temps;
+  }
+
+  function generateChart() {
+    temperatures = generateTemperatures();
+    chart.innerHTML = '';
+    labels.innerHTML = '';
+
+    const maxTempValue = Math.max(...temperatures.map(t => t.max));
+    const chartHeight = 500 - 20;
+    const scale = chartHeight / maxTempValue;
+
+    temperatures.forEach((temp, i) => {
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      bar.dataset.day = i + 1;
+      bar.dataset.min = temp.min;
+      bar.dataset.max = temp.max;
+
+      const minHeight = temp.min * scale;
+      const maxHeight = (temp.max - temp.min) * scale;
+
+      const minDiv = document.createElement('div');
+      minDiv.className = 'min';
+      minDiv.style.height = `${minHeight}px`;
+      minDiv.innerText = temp.min + '°';
+
+      const maxDiv = document.createElement('div');
+      maxDiv.className = 'max';
+      maxDiv.style.height = `${maxHeight}px`;
+      maxDiv.style.bottom = `${minHeight}px`;
+      maxDiv.innerText = temp.max + '°';
+
+      bar.appendChild(minDiv);
+      bar.appendChild(maxDiv);
+      chart.appendChild(bar);
+
+      const label = document.createElement('div');
+      label.innerText = i + 1;
+      labels.appendChild(label);
+    });
+
+    dayInfo.innerHTML = "Выберите день для просмотра температур";
+    minTemp.innerHTML = "Минимальная температура: —";
+    maxTemp.innerHTML = "Максимальная температура: —";
+  }
+
+  function highlightDay(day) {
+    document.querySelectorAll('.bar').forEach(bar => bar.classList.remove('selected'));
+    const selectedBar = document.querySelector(`.bar[data-day="${day}"]`);
+    if (selectedBar) {
+      selectedBar.classList.add('selected');
+      const min = selectedBar.dataset.min;
+      const max = selectedBar.dataset.max;
+      const month = monthSelect.value;
+      dayInfo.innerHTML = `Месяц: <b>${month}</b>, день ${day}`;
+      minTemp.innerHTML = `Минимальная температура: <b>${min}°C</b>`;
+      maxTemp.innerHTML = `Максимальная температура: <b>${max}°C</b>`;
+    }
+  }
+
+  function showDay() {
+    const input = document.getElementById('day-input');
+    const day = parseInt(input.value);
+    if (day >= 1 && day <= 30) {
+      highlightDay(day);
+    } else {
+      alert("Введите число от 1 до 30");
+    }
+  }
+
+  window.onload = generateChart;
+</script>
+
+<footer>
+    &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+</footer>
+
+</body>
+</html>
