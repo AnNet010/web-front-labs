@@ -9,6 +9,9 @@
     <link rel="icon" href="../favicon-16x16.png">
     <link rel="icon" href="../favicon-32x32.png">
     <style>
+        header {
+            transition: color 0.5s ease;
+        }
         .date-container {
             background-color: white;
             padding: 20px;
@@ -60,6 +63,35 @@
             margin-bottom: 20px;
             font-weight: bold;
         }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .no-transition {
+            transition: none !important;
+        }
+
     </style>
     <script>
         function showDate() {
@@ -98,17 +130,62 @@
                 { name: 'Казахстан', code: 'kk-KZ' }
             ];
             let container = document.getElementById('locale-dates');
-
+            container.innerHTML = '<h2>Дата и время в разных локалях:</h2>';
+            
+            let fragment = document.createDocumentFragment();
             locales.forEach(locale => {
-                container.innerHTML += `
-                    <div class="date-item">
-                        <span class="locale-name">${locale.name}</span>
-                        <span class="locale-code">(${locale.code})</span>:
-                        <span class="locale-date">${today.toLocaleString(locale.code)}</span>
-                    </div>
+                let div = document.createElement('div');
+                div.className = 'date-item no-transition';
+                div.innerHTML = `
+                    <span class="locale-name">${locale.name}</span>
+                    <span class="locale-code">(${locale.code})</span>:
+                    <span class="locale-date">${today.toLocaleString(locale.code)}</span>
                 `;
+                fragment.appendChild(div);
             });
+
+            container.appendChild(fragment);
+
+            setTimeout(() => {
+                const items = document.querySelectorAll('.date-item.no-transition');
+                items.forEach(el => el.classList.remove('no-transition'));
+            }, 50);
+        }
+
+
+        function changeColors() {
+            const header = document.getElementsByTagName('header')[0];
+            const rgb = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+            header.style.color = rgb;
+        }
+
+        let timerNum;
+        let dateTimer;
+
+        function startChangeColors() {
+            changeColors();
+            timerNum = setInterval(changeColors, 700);
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('stop-btn').disabled = false;
+        }
         
+
+        function stopChangeColors() {
+            clearInterval(timerNum);
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('stop-btn').disabled = true;
+        }
+
+        function startDateUpdate() {
+            dateTimer = setInterval(showDate, 1000);
+            document.getElementById('start-update-btn').disabled = true;
+            document.getElementById('stop-update-btn').disabled = false;
+        }
+
+        function stopDateUpdate() {
+            clearInterval(dateTimer);
+            document.getElementById('start-update-btn').disabled = false;
+            document.getElementById('stop-update-btn').disabled = true;
         }
     </script>
 </head>
@@ -119,9 +196,16 @@
 
     <main>
         <div id="current-date"></div>
-
         <div class="date-container" id="locale-dates">
             <h2>Дата и время в разных локалях:</h2>
+        </div>
+        <div>
+            <button onclick="startChangeColors()" id="start-btn">Старт</button>
+            <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button>
+        </div>
+        <div style="margin-top: 10px;">
+            <button onclick="startDateUpdate()" id="start-update-btn">Обновлять время</button>
+            <button onclick="stopDateUpdate()" id="stop-update-btn" disabled>Остановить обновление времени</button>
         </div>
     </main>
 
