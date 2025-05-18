@@ -1,0 +1,227 @@
+<!DOCTYPE html> 
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Котировки акций компании Русгрэйн</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script src="dollar-data.js"></script>
+    <style>
+        .stock-container {
+            max-width: 800px;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        
+        .stock-btn {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .stock-btn:hover {
+            background-color: #005fa3;
+        }
+        
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stock-table th {
+            background-color: #007acc;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .stock-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .stock-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .stock-table tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .positive {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .stats {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .stats p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    НГТУ, ФБ, Лабораторная работа 7
+</header>
+<main>
+    <div class="stock-container">
+        <button class="stock-btn" onclick="toggleStockTable()">Курс акций компании Русгрэйн</button>
+        <div id="stockTableContainer" class="hidden">
+            <table class="stock-table">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Цена, руб</th>
+                        <th>Изменение</th>
+                    </tr>
+                </thead>
+                <tbody id="stockTableBody">
+                </tbody>
+            </table>
+            
+            <div class="stats" id="stockStats">
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+</footer>
+<script>
+        const stockData = {
+        dates: [
+            "19.09.2023",
+            "15.09.2023",
+            "5.09.2023",
+            "1.09.2023",
+            "28.08.2023",
+            "22.08.2023",
+            "18.08.2023",
+            "14.08.2023",
+            "08.08.2023",
+            "04.08.2023"
+        ],
+        prices: [
+            14.15,
+            15.64,
+            17.06,
+            17.41,
+            16.79,
+            16.88,
+            16.9,
+            15.95,
+            16.49,
+            16.87
+        ]
+    };
+
+    function calculateDifferences(prices) {
+        return prices.map((price, index) => {
+            if (index === 0) return null;
+            return price - prices[index - 1];
+        });
+    }
+
+    function generateTableRows() {
+        const differences = calculateDifferences(stockData.prices);
+        let tableHTML = '';
+        
+        stockData.dates.forEach((date, index) => {
+            const price = stockData.prices[index];
+            const difference = differences[index];
+            
+            let differenceHTML = '-';
+            if (difference !== null) {
+                let className = '';
+                if (difference > 0) className = 'positive';
+                else if (difference < 0) className = 'negative';
+                
+                differenceHTML = `<span class="${className}">${difference.toFixed(2)}</span>`;
+            }
+            
+            tableHTML += `
+                <tr>
+                    <td>${date}</td>
+                    <td>${price}</td>
+                    <td>${differenceHTML}</td>
+                </tr>
+            `;
+        });
+        
+        return tableHTML;
+    }
+
+    function calculateStats() {
+        const prices = stockData.prices;
+        const sum = prices.reduce((acc, price) => acc + price, 0);
+        const average = Math.round(sum / prices.length);
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        
+        return {
+            average,
+            min,
+            max
+        };
+    }
+
+
+    function generateStatsHTML() {
+        const stats = calculateStats();
+        
+        return `
+            <p>Среднее значение: <strong>${stats.average} руб</strong></p>
+            <p>Минимальное значение: <strong>${stats.min} руб</strong></p>
+            <p>Максимальное значение: <strong>${stats.max} руб</strong></p>
+        `;
+    }
+
+    function toggleStockTable() {
+        const container = document.getElementById('stockTableContainer');
+        const tableBody = document.getElementById('stockTableBody');
+        const statsContainer = document.getElementById('stockStats');
+        
+        if (container.classList.contains('hidden')) {
+            tableBody.innerHTML = generateTableRows();
+            statsContainer.innerHTML = generateStatsHTML();
+            container.classList.remove('hidden');
+        } else {
+            container.classList.add('hidden');
+        }
+    }
+</script> 
+
+</body>
+</html>
