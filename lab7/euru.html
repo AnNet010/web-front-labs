@@ -1,0 +1,144 @@
+<!DOCTYPE html> 
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Курс евро</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .exchange-info {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            max-width: 500px;
+        }
+        .exchange-rate {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .date-info {
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .difference {
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .positive {
+            color: green;
+            background-color: #e6ffe6;
+        }
+        .negative {
+            color: red;
+            background-color: #ffe6e6;
+        }
+        .neutral {
+            color: black;
+            background-color: #f0f0f0;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: rgb(5, 164, 212);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: rgb(5, 164, 212);
+        }
+        .credit {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+<header>
+    НГТУ, ФБ, Лабораторная работа 7
+</header>
+<main>
+    <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+    <div id="result"></div>
+    <div class="credit">
+        <a href="https://www.cbr-xml-daily.ru/">Курсы ЦБ РФ в XML и JSON, API</a>
+    </div>
+</main>
+
+<footer>
+    &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+</footer>
+
+<script>
+    function getEuroExchangeRate() {
+        const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+        fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(json) {
+                displayExchangeRate(json);
+            })
+            .catch(function(error) {
+                document.getElementById('result').innerHTML = 
+                    '<div class="exchange-info">Ошибка при получении данных: ' + error + '</div>';
+            });
+    }
+
+    function displayExchangeRate(data) {
+        const eur = data.Valute.EUR;
+        const currentRate = eur.Value;
+        const previousRate = eur.Previous;
+        const difference = currentRate - previousRate;
+        
+        let differenceClass = 'neutral';
+        let differenceText = 'без изменений';
+        
+        if (difference > 0) {
+            differenceClass = 'positive';
+            differenceText = '↑ +' + difference.toFixed(4);
+        } else if (difference < 0) {
+            differenceClass = 'negative';
+            differenceText = '↓ ' + difference.toFixed(4);
+        }
+        
+        const date = new Date(data.Date);
+        const formattedDate = date.toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        
+        const previousDate = new Date(data.PreviousDate);
+        const formattedPreviousDate = previousDate.toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        const resultHTML = `
+            <div class="exchange-info">
+                <div class="date-info">Курс на ${formattedDate}</div>
+                <div class="exchange-rate">1 EUR = ${currentRate.toFixed(4)} RUB</div>
+                <div class="date-info">Предыдущий курс (${formattedPreviousDate}): ${previousRate.toFixed(4)} RUB</div>
+                <div class="difference ${differenceClass}">Изменение: ${differenceText}</div>
+            </div>
+        `;
+        
+        document.getElementById('result').innerHTML = resultHTML;
+    }
+</script>
+
+</body>
+</html>
