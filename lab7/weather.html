@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Боброва Анна Антоновна. Прогноз погоды</title>
+  <link rel="stylesheet" href="../main.css" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="../favicon-16x16.png" />
+  <link rel="icon" href="../favicon-32x32.png" />
+  <style>
+    .weather-card {
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background: linear-gradient(to bottom right, #e3f2fd, #f1f8e9);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .weather-card h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #333;
+      text-align: center;
+    }
+
+    .weather-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .weather-list li {
+      font-size: 18px;
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background-color: #ffffffd9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .weather-time {
+      font-weight: bold;
+      color: #1e88e5;
+    }
+
+    .weather-temp {
+      color: #388e3c;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: rgb(5, 164, 212);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 20px auto;
+    }
+
+    button:hover {
+      background-color: rgb(3, 140, 180);
+    }
+
+    .credit {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header>
+  НГТУ, ФБ, Лабораторная работа 7
+</header>
+
+<main>
+  <button onclick="loadWeather()">Показать температуру</button>
+  <div id="weatherResult"></div>
+  <div class="credit">
+    <a href="https://open-meteo.com/">Данные с open-meteo.com</a>
+  </div>
+</main>
+
+<footer>
+  &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+</footer>
+
+<script>
+  function loadWeather() {
+    const apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok";
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(weatherData => {
+        const timeArray = weatherData.hourly.time;
+        const temperatureArray = weatherData.hourly.temperature_2m;
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const todayStr = `${year}-${month}-${day}`;
+
+        const targetHours = ["08:00", "12:00", "20:00"];
+        const hourLabels = {
+          "08:00": "Утро (08:00)",
+          "12:00": "День (12:00)",
+          "20:00": "Вечер (20:00)"
+        };
+
+        let htmlOutput = `<div class="weather-card"><h2>Температура в Новосибирске на ${day}.${month}.${year}</h2><ul class="weather-list">`;
+
+        targetHours.forEach(hour => {
+          const key = `${todayStr}T${hour}`;
+          const index = timeArray.indexOf(key);
+          if (index !== -1) {
+            htmlOutput += `
+              <li>
+                <span class="weather-time">${hourLabels[hour]}</span>
+                <span class="weather-temp">${temperatureArray[index]} °C</span>
+              </li>`;
+          } else {
+            htmlOutput += `
+              <li>
+                <span class="weather-time">${hourLabels[hour]}</span>
+                <span class="weather-temp">Нет данных</span>
+              </li>`;
+          }
+        });
+
+        htmlOutput += `</ul></div>`;
+        document.getElementById('weatherResult').innerHTML = htmlOutput;
+      })
+      .catch(error => {
+        document.getElementById('weatherResult').innerHTML = `
+          <div class="weather-card">
+            Ошибка при получении данных: ${error}
+          </div>`;
+      });
+  }
+</script>
+
+</body>
+</html>
