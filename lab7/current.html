@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Боброва Анна Антоновна. Прогноз и реальная погода</title>
+<link rel="stylesheet" href="../main.css" />
+<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+<link rel="icon" href="../favicon-16x16.png" />
+<link rel="icon" href="../favicon-32x32.png" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h1, h2 {
+    color: #2c3e50;
+    text-align: center;
+  }
+  .current-weather, .tabs {
+    margin: 20px 0;
+  }
+  .current-weather {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background: #e8f4f8;
+    border-radius: 8px;
+  }
+  .weather-item {
+    text-align: center;
+    padding: 10px;
+  }
+  .weather-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2980b9;
+  }
+  .weather-label {
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  .chart-container {
+    position: relative;
+    height: 400px;
+    margin: 20px 0;
+  }
+  .chart-title {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  .credit {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #7f8c8d;
+  }
+  .tabs {
+    display: flex;
+  }
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background: #eee;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+    user-select: none;
+  }
+  .tab.active {
+    background: #3498db;
+    color: #fff;
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<header>
+    НГТУ, ФБ, Лабораторная работа 7
+</header>
+
+<main>
+  <div class="container">
+    <h1>Прогноз и реальная погода в Новосибирске</h1>
+
+    <div id="current-weather" class="current-weather"></div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="temperature">Температура</div>
+      <div class="tab" data-tab="humidity">Влажность</div>
+    </div>
+
+    <div id="temperature-tab" class="tab-content active">
+      <div class="chart-title">Прогноз и реальные значения температуры (°C)</div>
+      <div class="chart-container"><canvas id="temperatureChart"></canvas></div>
+    </div>
+
+    <div id="humidity-tab" class="tab-content">
+      <div class="chart-title">Прогноз и реальные значения влажности (%)</div>
+      <div class="chart-container"><canvas id="humidityChart"></canvas></div>
+    </div>
+
+    <div class="credit">
+      <a href="https://open-meteo.com/">Данные о погоде предоставлены Open-Meteo</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+    &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+</footer>
+
+<script>
+  let temperatureChart, humidityChart;
+
+  document.querySelectorAll('.tab').forEach(tab =>
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab, .tab-content').forEach(el => el.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab + '-tab').classList.add('active');
+    })
+  );
+
+  function loadWeatherData() {
+    const lat = 55.0415, lon = 82.9346;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,relative_humidity_2m&current_weather=true&past_days=1&forecast_days=1&timezone=auto`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        displayCurrentWeather(data.current_weather, data.hourly);
+        createCharts(data.hourly);
+      })
+      .catch(() => alert('Ошибка при загрузке данных погоды'));
+  }
+
+  function displayCurrentWeather(current, hourly) {
+    if (!current) {
+      document.getElementById('current-weather').innerHTML = 'Нет текущих данных';
+      return;
+    }
+    const idx = hourly.time.indexOf(current.time) !== -1 ? hourly.time.indexOf(current.time) : hourly.time.findIndex(t => t > current.time);
+    const humidity = (idx !== -1 && hourly.relative_humidity_2m[idx] !== undefined) ? hourly.relative_humidity_2m[idx] : 'нет данных';
+    const date = new Date(current.time);
+    document.getElementById('current-weather').innerHTML = `
+      <div class="weather-item"><div class="weather-label">Текущая температура</div><div class="weather-value">${current.temperature}°C</div></div>
+      <div class="weather-item"><div class="weather-label">Текущая влажность</div><div class="weather-value">${humidity}%</div></div>
+      <div class="weather-item"><div class="weather-label">Дата и время</div><div class="weather-value">${date.toLocaleString('ru-RU')}</div></div>
+    `;
+  }
+
+  function createCharts(hourly) {
+    const times = hourly.time;
+    const temperatures = hourly.temperature_2m;
+    const humidities = hourly.relative_humidity_2m;
+    const today = new Date(times[times.length - 1]).toISOString().slice(0,10);
+    const yesterday = new Date(Date.parse(today) - 86400000).toISOString().slice(0,10);
+
+    const pastTemps = {}, forecastTemps = {}, pastHum = {}, forecastHum = {};
+    const hoursSet = new Set();
+
+    times.forEach((t, i) => {
+      const dateStr = t.slice(0,10), hourStr = t.slice(11,16);
+      hoursSet.add(hourStr);
+      if(dateStr === yesterday) {
+        pastTemps[hourStr] = temperatures[i];
+        pastHum[hourStr] = humidities[i];
+      } else if(dateStr === today) {
+        forecastTemps[hourStr] = temperatures[i];
+        forecastHum[hourStr] = humidities[i];
+      }
+    });
+
+    const hours = [...hoursSet].sort();
+
+    const pastTempData = hours.map(h => pastTemps[h] ?? null);
+    const forecastTempData = hours.map(h => forecastTemps[h] ?? null);
+    const pastHumData = hours.map(h => pastHum[h] ?? null);
+    const forecastHumData = hours.map(h => forecastHum[h] ?? null);
+
+    const labels = hours.map(h => {
+      let fullDate = times.find(t => t.slice(11,16) === h).slice(0,10);
+      const dateObj = new Date(fullDate);
+      return dateObj.toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'}) + ' ' + h;
+    });
+
+    const createChart = (ctx, label1, data1, color1, label2, data2, color2, yTitle, yMin, yMax, title) => {
+      if(ctx.chart) ctx.chart.destroy();
+      ctx.chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            { label: label1, data: data1, backgroundColor: color1, borderColor: color1.replace('0.7', '1'), borderWidth: 1 },
+            { label: label2, data: data2, backgroundColor: color2, borderColor: color2.replace('0.7', '1'), borderWidth: 1 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              title: { display: true, text: 'Дата и время' },
+              stacked: false,
+              ticks: { maxRotation: 45, minRotation: 45, autoSkip: false }
+            },
+            y: {
+              beginAtZero: yMin === 0,
+              min: yMin,
+              max: yMax,
+              title: { display: true, text: yTitle }
+            }
+          },
+          plugins: { title: { display: true, text: title } }
+        }
+      });
+      return ctx.chart;
+    };
+
+    temperatureChart = createChart(
+      document.getElementById('temperatureChart').getContext('2d'),
+      'Реальная температура (вчера)', pastTempData, 'rgba(54, 162, 235, 0.7)',
+      'Прогноз температуры (сегодня)', forecastTempData, 'rgba(255, 99, 132, 0.7)',
+      'Температура (°C)', null, null,
+      'Температура: реальные данные и прогноз'
+    );
+
+    humidityChart = createChart(
+      document.getElementById('humidityChart').getContext('2d'),
+      'Реальная влажность (вчера)', pastHumData, 'rgba(75, 192, 192, 0.7)',
+      'Прогноз влажности (сегодня)', forecastHumData, 'rgba(153, 102, 255, 0.7)',
+      'Влажность (%)', 0, 100,
+      'Влажность: реальные данные и прогноз'
+    );
+  }
+
+  window.onload = loadWeatherData;
+</script>
+
+</body>
+</html>
