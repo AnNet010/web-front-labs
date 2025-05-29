@@ -1,0 +1,181 @@
+<!DOCTYPE html> 
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Новости</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="menu.js"></script>
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-192x192.png" sizes="192x192">
+    <style>
+      body {
+        background: white;
+        color: black;
+      }
+
+      h2 {
+        font-size: 60px;
+        text-transform: uppercase;
+        margin: 0 0 20px 0;
+        font-weight: bold;
+        margin-top: 200px;
+        color:#000;
+        padding-left: 30px;
+      }
+
+      .section-border {
+        border-top: 1px solid #ccc;
+        margin: 20px 0;
+      }
+
+      .news-card {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        padding: 20px 0;
+      }
+
+      .news-date {
+        color: #999;
+        font-size: 14px;
+        width: 180px;
+        flex-shrink: 0;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      .news-content {
+        flex-grow: 1;
+        max-width: 1000px;
+        padding-left: 400px;
+      }
+
+      .news-title {
+        font-weight: bold;
+        font-size: 25px;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+      }
+
+      .news-excerpt {
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: #888888;
+      }
+
+      .news-full {
+        display: none;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .toggle-btn {
+        cursor: pointer;
+        font-size: 14px;
+        color: #0056b3;
+        text-decoration: underline;
+        display: inline-block;
+      }
+
+      .open .news-full {
+        display: block;
+        margin-top: 10px;
+      }
+
+      .open .toggle-btn::after {
+        content: " (скрыть)";
+      }
+
+      .toggle-btn::after {
+        content: " (показать)";
+      }
+    </style>
+  </head>
+  <body>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="logo" />
+      <div class="phone-number">8 (484) 397 60 52</div>
+    </div>
+  </header>
+
+  <main>
+    <h2>Новости</h2>
+    <div class="section-border"></div>
+    <div id="news-container"></div>
+  </main>
+
+  <script src="texts.js"></script>
+  <script>
+    const container = document.getElementById("news-container");
+
+    newsData.forEach(({ date, title, excerpt, full }) => {
+      const card = document.createElement("div");
+      card.className = "news-card";
+
+      const left = document.createElement("div");
+      left.className = "news-date";
+      left.textContent = date;
+
+      const right = document.createElement("div");
+      right.className = "news-content";
+      right.innerHTML = `
+        <div class="news-title">${title}</div>
+        <div class="news-excerpt">${excerpt}</div>
+        <div class="toggle-btn"></div>
+        <div class="news-full">${full}</div>
+      `;
+
+      const toggle = right.querySelector(".toggle-btn");
+      toggle.addEventListener("click", () => {
+        card.classList.toggle("open");
+      });
+
+      card.appendChild(left);
+      card.appendChild(right);
+      container.appendChild(card);
+    });
+  </script>
+
+  <a href="#top" class="to-top" title="Наверх"><i class="fas fa-arrow-up"></i></a>
+
+  <nav class="bottom-menu"> 
+    <a href="company.html"><i class="fas fa-info-circle"></i><span>О компании</span></a>
+    <a href="news.html"><i class="fas fa-newspaper"></i><span>Новости</span></a>
+    <a href="currency.html"><i class="fas fa-coins"></i><span>Курс</span></a>
+    <a href="contacts.html"><i class="fas fa-map-marker-alt"></i><span>Контакты</span></a>
+    <a href="video.html"><i class="fas fa-video"></i><span>Видео</span></a>
+  </nav>
+
+  <footer>
+    <div class="footer-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="footer-logo" />
+      <div class="footer-column contact-info">
+        <p class="address">249038, Калужская область, г. Обнинск</p>
+        <p class="address" style="margin-bottom: 28px;">Коммунальный проезд, дом 23, стр.1А,<br>АБК этаж 3, кабинет 7</p>
+        <p class="contact-large"><b>8 (484) 397 60 52</b></p>
+        <p class="contact-large"><b>INFO@KLVZK.RU</b></p>
+      </div>
+    </div>
+
+    <div class="footer-social-icons-container">
+      <a href="https://t.me/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle tg">
+        <img src="tg.jpg" alt="Telegram" class="base-icon" />
+      </a>
+      <a href="https://vk.com/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle vk">
+        <img src="vk.jpg" alt="VK" class="base-icon" />
+      </a>
+      <a href="https://dzen.ru/klvz_kristall" target="_blank" rel="noopener noreferrer" class="circle dzen">
+        <img src="dzen.jpg" alt="Dzen" class="base-icon" />
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Кристалл KLVZ. Все права защищены.</p>
+      <p>Чрезмерное употребление алкоголя вредит вашему здоровью.</p>
+    </div>
+  </footer>
+  </body>
+</html>
