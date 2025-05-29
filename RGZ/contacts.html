@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контактные данные</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="menu.js"></script>
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-192x192.png" sizes="192x192">
+    <style>
+      .contacts-title {
+        font-size: 60px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        line-height: 1;
+        min-width: 200px;
+        flex-shrink: 0;
+        user-select: none;
+        text-transform: uppercase;
+        margin-top: 160px;
+        margin-left: 30px;;
+      }
+
+      .contacts-text {
+        flex: 1;
+        font-family: Arial, sans-serif;
+        color: #000;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-top: 160px;
+      }
+
+      .contact-item {
+        margin-bottom: 24px;        
+      }
+
+      .label {
+        font-size: 14px;
+        color: gray;
+        font-weight: normal;
+        margin-bottom: 6px;
+        text-transform: none;
+      }
+
+      .main {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+      }
+
+      .extra {
+        font-size: 16px;
+        font-weight: normal;
+        color: #000;
+        margin-top: 4px;
+        white-space: normal;
+      }
+
+      body {
+        font-family: 'Arial', sans-serif;
+        background: #fff;
+        color: #000;
+      }
+    
+    .map-container {
+      width: 100%;
+      margin: 20px 0 40px 0;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 400px;
+      border-radius: 8px;
+    }        
+    </style>
+  </head>
+  <body>
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="logo" />
+      <div class="phone-number">8 (484) 397 60 52</div>
+    </div>
+  </header>
+
+  <main style="display: flex; gap: 280px; padding: 20px;">
+    <div class="contacts-title">КОНТАКТЫ</div>
+    <div class="contacts-text">
+      <div class="contact-item ">
+        <div class="label">Телефон</div>
+        <div class="main">8 (484) 397 60 52</div>
+        <div class="extra">Понедельник - пятница: с 9:00 до 18:00<br>Суббота, воскресенье: выходной</div>
+      </div>
+
+      <div class="contact-item">
+        <div class="label">Почта</div>
+        <div class="main" style="text-transform: uppercase;">info@klvzk.ru</div>
+      </div>
+
+      <div class="contact-item">
+        <div class="label">Адрес</div>
+        <div class="main" style="text-transform: uppercase;">
+          249038, Калужская область,<br>
+          г. Обнинск, Коммунальный<br>
+          проезд, дом 23, стр. 1А,<br>
+          АБК этаж 3, кабинет 7
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11568.017654350493!2d36.636864!3d55.108895!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDA2JzQ4LjUiTiAzNsKwMzgnMDIuMCJF!5e0!3m2!1sru!2sru!4v1685038025640!5m2!1sru!2sru"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Карта по координатам 55.108895, 36.636864"></iframe>
+  </div>
+
+  <a href="#top" class="to-top" title="Наверх"><i class="fas fa-arrow-up"></i></a>
+
+  <nav class="bottom-menu"> 
+    <a href="company.html"><i class="fas fa-info-circle"></i><span>О компании</span></a>
+    <a href="news.html"><i class="fas fa-newspaper"></i><span>Новости</span></a>
+    <a href="currency.html"><i class="fas fa-coins"></i><span>Курс</span></a>
+    <a href="contacts.html"><i class="fas fa-map-marker-alt"></i><span>Контакты</span></a>
+    <a href="video.html"><i class="fas fa-video"></i><span>Видео</span></a>
+  </nav>
+
+  <footer>
+    <div class="footer-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="footer-logo" />
+      <div class="footer-column contact-info">
+        <p class="address">249038, Калужская область, г. Обнинск</p>
+        <p class="address" style="margin-bottom: 28px;">Коммунальный проезд, дом 23, стр.1А,<br>АБК этаж 3, кабинет 7</p>
+        <p class="contact-large"><b>8 (484) 397 60 52</b></p>
+        <p class="contact-large"><b>INFO@KLVZK.RU</b></p>
+      </div>
+    </div>
+
+    <div class="footer-social-icons-container">
+      <a href="https://t.me/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle tg">
+        <img src="tg.jpg" alt="Telegram" class="base-icon" />
+      </a>
+      <a href="https://vk.com/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle vk">
+        <img src="vk.jpg" alt="VK" class="base-icon" />
+      </a>
+      <a href="https://dzen.ru/klvz_kristall" target="_blank" rel="noopener noreferrer" class="circle dzen">
+        <img src="dzen.jpg" alt="Dzen" class="base-icon" />
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Кристалл KLVZ. Все права защищены.</p>
+      <p>Чрезмерное употребление алкоголя вредит вашему здоровью.</p>
+    </div>
+  </footer>
+  </body>
+</html>
