@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс валют</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="currency.js"></script>
+    <script src="menu.js"></script>
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-192x192.png" sizes="192x192">
+    <style>
+      main {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      .chart-info {
+          margin-bottom: 30px;
+      }
+
+      .calculator {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+
+      .converter {
+        flex: 1 1 45%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        border-radius: 12px;
+      }
+
+      .converter label {
+        font-weight: bold;
+      }
+
+      .converter input {
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+
+      .converter input[readonly] {
+        background-color: #333;
+        color: #ccc;
+      }
+
+      .converter button {
+        padding: 10px;
+        background-color: #0077ff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .converter button:hover {
+        background-color: #005acc;
+      }
+      .rate-info {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      #chartInfo {
+        margin-top: 15px;
+        text-align: center;
+      }
+    </style>
+  </head>  
+  <body>
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="logo" />
+      <div class="phone-number">8 (484) 397 60 52</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="currency-section">
+      <h2 style="margin-top: 120px;">Курс индонезийской рупии (IDR)</h2>
+        
+      <div class="currency-calculator">
+        <div class="converter">
+          <h3>Калькулятор валют</h3>
+            <div class="input-group">
+              <label for="rub">Рубли (RUB):</label>
+              <input type="number" id="rub" placeholder="Введите сумму">
+              <button onclick="convert('rubToIdr')">→</button>
+              <input type="number" id="idr" placeholder="Результат">
+              <label for="idr">Рупии (IDR):</label>
+            </div>
+            <div class="input-group">
+              <label for="idr2">Рупии (IDR):</label>
+              <input type="number" id="idr2" placeholder="Введите сумму">
+              <button onclick="convert('idrToRub')">→</button>
+              <input type="number" id="rub2" placeholder="Результат">
+              <label for="rub2">Рубли (RUB):</label>
+            </div>
+            <p class="rate-info">Текущий курс: <span id="currentRate">Загрузка...</span></p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <h3>Динамика курса IDR за последний месяц</h3>
+          <canvas id="currencyChart" style="margin-left: 30px; margin-right: 30px; margin-bottom: 30px;"></canvas>
+          <div class="chart-info" id="chartInfo"></div>
+          <div class="chart-source" style="text-align: center; font-size: 14px; margin-bottom: 30px;">
+            Данные предоставлены <a href="https://www.cbr-xml-daily.ru/" target="_blank" rel="noopener noreferrer">Центральным банком России</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a href="#top" class="to-top" title="Наверх"><i class="fas fa-arrow-up"></i></a>
+
+  <nav class="bottom-menu"> 
+    <a href="company.html"><i class="fas fa-info-circle"></i><span>О компании</span></a>
+    <a href="news.html"><i class="fas fa-newspaper"></i><span>Новости</span></a>
+    <a href="currency.html"><i class="fas fa-coins"></i><span>Курс</span></a>
+    <a href="contacts.html"><i class="fas fa-map-marker-alt"></i><span>Контакты</span></a>
+    <a href="video.html"><i class="fas fa-video"></i><span>Видео</span></a>
+  </nav>
+
+  <footer>
+    <div class="footer-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="footer-logo" />
+      <div class="footer-column contact-info">
+        <p class="address">249038, Калужская область, г. Обнинск</p>
+        <p class="address" style="margin-bottom: 28px;">Коммунальный проезд, дом 23, стр.1А,<br>АБК этаж 3, кабинет 7</p>
+        <p class="contact-large"><b>8 (484) 397 60 52</b></p>
+        <p class="contact-large"><b>INFO@KLVZK.RU</b></p>
+      </div>
+    </div>
+
+    <div class="footer-social-icons-container">
+      <a href="https://t.me/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle tg">
+        <img src="tg.jpg" alt="Telegram" class="base-icon" />
+      </a>
+      <a href="https://vk.com/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle vk">
+        <img src="vk.jpg" alt="VK" class="base-icon" />
+      </a>
+      <a href="https://dzen.ru/klvz_kristall" target="_blank" rel="noopener noreferrer" class="circle dzen">
+        <img src="dzen.jpg" alt="Dzen" class="base-icon" />
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Кристалл KLVZ. Все права защищены.</p>
+      <p>Чрезмерное употребление алкоголя вредит вашему здоровью.</p>
+    </div>
+  </footer>
+  </body>
+</html>
