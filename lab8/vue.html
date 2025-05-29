@@ -19,6 +19,9 @@
     <main>
         <div id="app">
             <h1 :title="messsageRus">{{ messsage }}</h1>
+            <p>Счётчик: {{ counter }}</p>
+            <button @click="incCounter" v-if="counter < 10">++</button>
+            <button @click="decCounter" v-if="counter > 0">--</button>
         </div>
     </main>
 
@@ -32,10 +35,18 @@
                 return {
                     messsage: 'Hello!',
                     messsageRus: 'Привет!',
+                    counter: 1,
                 }
             },
+            methods: {
+                incCounter() {
+                    this.counter++;
+                },
+                decCounter() {
+                    this.counter--;
+                },
+            }
         }).mount('#app');
-
     </script>
     </body>
 </html>
