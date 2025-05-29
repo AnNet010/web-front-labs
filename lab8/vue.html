@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боброва Анна Антоновна. Лабораторная 8</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+    
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 8
+    </header>
+
+    <main>
+        <div id="app">
+            <h1 :title="messsageRus">{{ messsage }}</h1>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Анна Боброва, ФБИ-31, 2 курс, 2025
+    </footer>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    messsage: 'Hello!',
+                    messsageRus: 'Привет!',
+                }
+            },
+        }).mount('#app');
+
+    </script>
+    </body>
+</html>
