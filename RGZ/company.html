@@ -1,0 +1,478 @@
+<!DOCTYPE html> 
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>О компании - Кристалл KLVZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="menu.js"></script>
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://klvzk.ru/wp-content/uploads/2024/12/cropped-ms-icon-310x310-1-192x192.png" sizes="192x192">
+    <style>
+      .activities {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 30px 0;
+      }
+
+      .activity {
+        flex: 1 1 30%;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      }
+
+      .activity-block {
+        width: 100%;
+        padding: 40px 20px;
+        background: white;
+        color: #061930;
+      }
+
+      .activity-key-title {
+        margin-bottom: 40px;
+        padding-left: 15px;
+        text-align: left;
+        left: 16px;
+        color: black
+      }
+
+      .activity-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 20px 0;
+      }
+
+      .activity-item {
+        flex: 1 1 0;
+        text-align: left;
+        padding: 0 10px;
+      }
+
+      .activity-item i {
+        font-size: 40px;
+        color: #0077ff;
+        margin-bottom: 10px;
+      }
+
+      .activity-name {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 10px 0;
+        font-size: 24px;
+        color: #061930;
+      }
+
+      .activity-text {
+        font-size: 13px;
+        line-height: 1.5;
+        color: #020e1b80;
+      }
+
+      .company-block {
+        width: 100%;
+        padding: 0 32px;
+        text-align: center;
+      }
+
+      .company-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 0;
+        margin-bottom: 20px;
+      }
+
+      .historical {
+        position: relative;
+        width: 100%;
+      }
+
+      .historical-text {
+        display: flex;
+        justify-content: space-between;
+        color: #81878d;
+        font-size: 15px;
+        margin: 0;
+        padding-bottom: 1px;
+      }
+
+      .crystal {
+        text-transform: uppercase;
+        font-size: 253px;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 0;
+        margin: 0;
+        margin-bottom: 100px;
+        padding-top: 0;
+        line-height: 1;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .company-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 150px;
+        width: 100%;
+        color: white;
+      }
+
+      .company-description {
+        font-size: 16px;
+        line-height: 1.6;
+        flex: 1;
+        padding: 0 20px;
+      }
+
+      .section-title-wrapper {
+        width: 100%;
+        background: #061930;
+
+      }
+
+      .section-title {
+        max-width: 1200px;
+        margin: 0 auto;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: left;
+        padding: 0 28px;
+        color: white;
+        margin-left: 0;
+        font-size: 45px;
+        margin-bottom: 40px;
+      }
+
+      .history-container {
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 40px 40px; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 0 20px; 
+        margin-top: 40px;
+      }
+
+      .history-block1,
+      .history-block2 {
+        flex: 0 0 48%; 
+        background: transparent;
+        border-radius: 15px;
+        height: 420px; 
+        display: flex; 
+        flex-direction: column;
+      }
+
+      .history-block1 {
+        margin-bottom: 12px; 
+      }
+
+      .history-block2 {
+        margin-bottom: 20px; 
+      }
+
+      .history-block img {
+        width: 100%; 
+        height: 400px; 
+        object-fit: cover; 
+        border-radius: 12px; 
+        margin-bottom: 12px; 
+        flex-shrink: 0;
+      }
+
+      .history-block-text {
+        color: white; 
+        font-size: 15px; 
+        flex-grow: 1; 
+        text-align: left;
+      }
+
+      .history-bottom {
+        max-width: 1200px; 
+        margin: 40px auto 60px auto; 
+        padding: 0 20px; 
+        font-size: 15px; 
+        color: white; 
+        text-align: left; 
+        line-height: 1.5;
+      }
+
+      .key-people-section {
+        background: white; 
+        padding: 0 20px 40px 20px; 
+        max-width: 100%;
+      }
+
+      .key-people-container {
+        max-width: 1200px; 
+        margin: 0 auto; 
+        font-family: sans-serif;
+      }
+
+      .key-people-block {
+        display: flex; 
+        gap: 16px; 
+        justify-content: space-between; 
+        flex-wrap: nowrap; 
+        padding-left: 10px;
+      }
+
+      .person-block {
+        flex: 1 1 520px; 
+        max-width: 520px; 
+        text-align: left;
+      } 
+
+      .person-photo {
+        width: 500px; 
+        height: 380px; 
+        margin-bottom: 12px; 
+        object-fit: cover; 
+        background: white; 
+        padding: 8px; 
+        border-radius: 20px;
+      }
+
+      .person-position {
+        font-size: 14px; 
+        color: #81878d; 
+        margin-bottom: 6px;
+      }
+
+      .person-name {
+        font-weight: bold; 
+        font-size: 30px; 
+        color: black; 
+        text-transform: uppercase; 
+        line-height: 1.2;
+      }
+
+      .person-description {
+        font-size: 16px; 
+        color: #020e1b80; 
+        line-height: 1.5; 
+        margin-top: 12px;
+      } 
+    </style>
+  </head>
+  <body>
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="logo" />
+      <div class="phone-number">8 (484) 397 60 52</div>
+    </div>
+  </header>
+
+
+  <main class="container">
+    <section style="margin-top: 58px;">
+      <div class="historical">
+        <div class="historical-text">
+          <div style="padding-left: 32px;">Работаем с 1901 года</div>
+          <div style="padding-right: 32px;">Калужский ликёро-водочный завод</div>
+        </div>
+        <div class="crystal">КРИСТАЛЛ</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="company-wrapper">
+        <h3 id="company">Компания</h3>
+        <div class="company-description">
+          <p>Современное оборудование с <u>высочайшими производственными мощностями</u>.
+            Производственно-техническая лаборатория обеспечена новейшим импортным оборудованием.</p>
+          <p>История производства водки на Калужской земле берет свое начало в <b>1896-м</b>, 
+            когда по инициативе <i>министра финансов Сергея Юльевича Витте</i> ввели четвертую винную монополию в России.</p>
+          <p>Это один из наиболее динамично развивающихся производителей алкоголя в России. 
+            Входит в <b>топ-10 крупнейших компаний отрасли</b>, выпускает &gt;20 млн л водки и ликёро-водочных изделий 
+            (ЛВИ) в год. Производство расположено в г. Обнинск (Калужская область). В линейке завода – <b>более 10 видов алкоголя</b>, 
+            <b>свыше 45 собственных брендов</b>.</p>
+          <p>Согласно Стратегии развития до 2026 года, КЛВЗ Кристалл планирует занять 18% рынка РФ в сегменте 
+            высокомаржинальных ЛВИ-дистиллятов. КЛВЗ планирует расширить производство импортозамещающих 
+            брендов – <u>сливочных ликеров «Бионика» (аналог «Бейлис»)</u>, <u>«Триплсек Барон Руссак» (аналог «Куантро»)</u>, 
+            <u>биттеров Alter Heiler</u> и <u>Konig Heiler (аналог Jagermeister)</u>.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="company-block">
+      <img src="comp.jpg" class="company-image" />
+    </div>
+
+    <div class="section-title-wrapper">
+      <div class="section-title">
+        "КЛВЗ КРИСТАЛЛ — ОДНА ИЗ НАИБОЛЕЕ ДИНАМИЧНО РАЗВИВАЮЩИХСЯ КОМПАНИЙ, ПРОИЗВОДЯЩАЯ ВОДКУ И ЛИКЁРО-ВОДОЧНЫЕ ИЗДЕЛИЯ".
+      </div>
+    </div>
+
+    <h3 id="history">История</h3>
+
+    <div class="history-container">
+      <div class="history-block1">
+        <img src="hist1.jpg" alt="">
+          <div class="history-block-text">
+            История «КЛВЗ Кристалл» начинается в 1901 году, когда в Калуге состоялось торжественное открытие 
+            Казенного винного склада.
+          </div>
+      </div>
+      <div class="history-block1">
+        <img src="hist2.jpg" alt="">
+        <div class="history-block-text">
+          В то время производить и продавать спиртное могли только государственные предприятия. В начале века 
+          завод пережил Первую мировую войну, революционное движение, Гражданскую войну с иностранной 
+          интервенцией.
+        </div>
+      </div>
+
+      <div style="flex-basis: 100%; height: 60px;"></div>
+
+      <div class="history-block2">
+        <img src="hist3.jpg" alt="">
+        <div class="history-block-text">
+          Во время Великой Отечественной Войны спирт производился и для «коктейлей Молотова», и для
+          обработки ран на поле боя. А во время немецкой оккупации запасы продукции завода были уничтожены, 
+          чтобы русский «шнапс» не достался врагу.
+        </div>
+      </div>
+
+      <div class="history-block2">
+        <img src="hist4.jpg" alt="">
+        <div class="history-block-text">
+          По окончании войны все силы были брошены на восстановление и развитие производства. Завод рос, 
+          расширялся ассортимент продукции, совершенствовались технологии.
+        </div>
+      </div>
+    </div>
+
+    <div style="flex-basis: 100%; height: 100px;"></div>
+
+      <div class="history-bottom">
+        В 1985-1991 гг заводчане пережили «сухой закон» М.С. Горбачева. В 1990-е «Кристалл» поставлял
+        в казну области до 40% всех налоговых сборов. А в 2018 г. один из крупнейших производителей региона «КЛВЗ Кристалл» обрел 
+        вторую жизнь в Обнинске. Первая бутылка с конвейера нового завода сошла в марте 2018 года.<br><br>
+
+        На протяжении всей истории завод экспортировал продукцию в десятки стран. Напитки завода стали «визитной карточкой» 
+        региона. «Кристалл» отмечен отечественными и международными дипломами, десятками золотых, серебряных и бронзовых медалей 
+        престижных выставок.
+      </div>
+
+
+      <section id="activities" class="activity-block">
+        <h3 class="activity-key-title">Виды деятельности</h3>
+        <div class="activity-grid">
+          <div class="activity-item">
+            <i class="fas fa-wine-bottle"></i>
+            <p class="activity-name">Производство дистиллированных питьевых алкогольных напитков</p>
+            <p class="activity-text">водки, виски, бренди, джина, ликеров и т. п. Основная деятельность</p>
+          </div>
+          <div class="divider"></div>
+          <div class="activity-item">
+            <i class="fas fa-glass-water"></i>
+            <p class="activity-name">Производство безалкогольных напитков</p>
+            <p class="activity-text">производство упакованных питьевых вод, включая минеральные воды</p>
+          </div>
+          <div class="divider"></div>
+          <div class="activity-item">
+            <i class="fas fa-shopping-cart"></i>
+            <p class="activity-name">Торговля</p>
+            <p class="activity-text">оптовая и розничная продажа</p>
+          </div>
+          <div class="divider"></div>
+          <div class="activity-item">
+            <i class="fas fa-truck"></i>
+            <p class="activity-name">Складирование и хранение</p>
+            <p class="activity-text">закупка, хранение и поставка продукции</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="key-people-section">
+        <h3 id="key-people" class="activity-key-title">Ключевые лица</h3>
+        <div class="key-people-container">
+          <div class="key-people-block">
+            <div class="person-block">
+              <img src="artem.png" alt="Артем Чубукин" class="person-photo">
+              <div class="person-position">Генеральный директор</div>
+              <div class="person-name">Артем<br>Чубукин</div>
+            </div>
+
+            <div class="person-block">
+              <img src="pavel.png" alt="Павел Победкин" class="person-photo">
+              <div class="person-position">Финансовый директор</div>
+              <div class="person-name">Павел<br>Победкин</div>
+            </div>
+
+            <div class="person-block">
+              <img src="sergey.png" alt="Сергей Кукин" class="person-photo">
+              <div class="person-position">Директор по производству</div>
+              <div class="person-name">Сергей<br>Кукин</div>
+          </div>
+
+          <div class="person-block">
+            <img src="ekaterina.png" alt="Екатерина Шакирова" class="person-photo">
+            <div class="person-position">Руководитель финансового отдела</div>
+            <div class="person-name">Екатерина<br>Шакирова</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a href="#top" class="to-top" title="Наверх"><i class="fas fa-arrow-up"></i></a>
+
+  <nav class="bottom-menu"> 
+    <a href="company.html"><i class="fas fa-info-circle"></i><span>О компании</span></a>
+    <a href="news.html"><i class="fas fa-newspaper"></i><span>Новости</span></a>
+    <a href="currency.html"><i class="fas fa-coins"></i><span>Курс</span></a>
+    <a href="contacts.html"><i class="fas fa-map-marker-alt"></i><span>Контакты</span></a>
+    <a href="video.html"><i class="fas fa-video"></i><span>Видео</span></a>
+  </nav>
+
+  <footer>
+    <div class="footer-container">
+      <img src="logo.png" alt="Логотип Кристалл" class="footer-logo" />
+      <div class="footer-links">
+        <a href="#company" class="footer-link">Компания</a>
+        <a href="#history" class="footer-link">История</a>
+        <a href="#activities" class="footer-link">Виды деятельности</a>
+        <a href="#key-people" class="footer-link">Ключевые лица</a>
+      </div>
+
+      <div class="footer-column contact-info">
+        <p class="address">249038, Калужская область, г. Обнинск</p>
+        <p class="address" style="margin-bottom: 28px;">Коммунальный проезд, дом 23, стр.1А,<br>АБК этаж 3, кабинет 7</p>
+        <p class="contact-large"><b>8 (484) 397 60 52</b></p>
+        <p class="contact-large"><b>INFO@KLVZK.RU</b></p>
+      </div>
+    </div>
+
+    <div class="footer-social-icons-container">
+      <a href="https://t.me/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle tg">
+        <img src="tg.jpg" alt="Telegram" class="base-icon" />
+      </a>
+      <a href="https://vk.com/klvzkristall" target="_blank" rel="noopener noreferrer" class="circle vk">
+        <img src="vk.jpg" alt="VK" class="base-icon" />
+      </a>
+      <a href="https://dzen.ru/klvz_kristall" target="_blank" rel="noopener noreferrer" class="circle dzen">
+        <img src="dzen.jpg" alt="Dzen" class="base-icon" />
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Кристалл KLVZ. Все права защищены.</p>
+      <p>Чрезмерное употребление алкоголя вредит вашему здоровью.</p>
+    </div>
+  </footer>
+  </body>
+</html>
