@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   let currentPage = window.location.pathname.split('/').pop();
   if (currentPage === '') {
-    currentPage = 'index.html';
+    currentPage = 'company.html';
   }
   const menuLinks = document.querySelectorAll('.bottom-menu a');
   menuLinks.forEach(link => {
